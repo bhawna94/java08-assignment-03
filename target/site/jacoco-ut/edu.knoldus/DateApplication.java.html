@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DateApplication.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java8-assignment-03</a> &gt; <a href="index.source.html" class="el_package">edu.knoldus</a> &gt; <span class="el_source">DateApplication.java</span></div><h1>DateApplication.java</h1><pre class="source lang-java linenums">package edu.knoldus;
+
+
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="nc" id="L9">public class DateApplication {</span>
+
+    public static void main(String args[])
+    {
+
+<span class="nc" id="L14">        System.out.println(getDaysOfBirthday(&quot;1994-10-11&quot;));</span>
+<span class="nc" id="L15">        System.out.println(getTimeZonevalue(&quot;America/New_York&quot;));</span>
+<span class="nc" id="L16">        System.out.println(mahtmaGandhiLivedInSeconds());</span>
+<span class="nc" id="L17">        System.out.println(findingLeapYear());</span>
+<span class="nc" id="L18">    }</span>
+
+    /**
+     * Returning The list of all days of my birthday
+     * @param myFirstBirthdate
+     * @return
+     */
+    public static List&lt;DayOfWeek&gt; getDaysOfBirthday(String myFirstBirthdate) {
+<span class="fc" id="L26">        List&lt;DayOfWeek&gt; days  = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L27">        LocalDate firstDate =  LocalDate.parse(myFirstBirthdate);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        while(firstDate.getYear()&lt; LocalDate.now().getYear())</span>
+        {
+<span class="fc" id="L30">            days.add(firstDate.getDayOfWeek());</span>
+<span class="fc" id="L31">            firstDate = firstDate.plusYears(1);</span>
+        }
+<span class="fc" id="L33">        return days;</span>
+    }
+
+    /**
+     * Finding Time Zone Value
+     * @param timeZone
+     * @return
+     */
+    public static ZonedDateTime getTimeZonevalue(String timeZone){
+<span class="fc" id="L42">        return ZonedDateTime.now(ZoneId.of(timeZone));</span>
+    }
+
+    public static Long mahtmaGandhiLivedInSeconds() {
+
+<span class="fc" id="L47">        LocalDateTime birthdate = LocalDateTime.of(1869,10,2,0,0);</span>
+<span class="fc" id="L48">        LocalDateTime deathdate= LocalDateTime.of(1948,1,30,0,0);</span>
+<span class="fc" id="L49">        return ChronoUnit.SECONDS.between(birthdate,deathdate);</span>
+    }
+
+    public static List&lt;Integer&gt; findingLeapYear() {
+
+
+<span class="fc" id="L55">        LocalDate startingyear = LocalDate.parse(&quot;1991-01-01&quot;);</span>
+<span class="fc" id="L56">        List&lt;Integer&gt; lisOfLeapYears = new ArrayList&lt;&gt;();</span>
+        //System.out.println(startingyear.getYear());
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        while (startingyear.getYear() &lt;= LocalDate.now().getYear()){</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            if( startingyear.isLeapYear()){</span>
+<span class="fc" id="L60">              lisOfLeapYears.add(startingyear.getYear());</span>
+            }
+<span class="fc" id="L62">            startingyear = startingyear.plusYears(1);</span>
+
+        }
+<span class="fc" id="L65">     return lisOfLeapYears;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
